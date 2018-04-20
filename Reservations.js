@@ -19,10 +19,10 @@ function handleRequestOne(req, res) {
 		case "/":
 			displayRoot(urlParts, req, res);
 			break;
-		case "/reservations":
+		case "/makeres":
 			displayReservations(urlParts, req, res);
 			break;
-		case "/reslist":
+		case "/viewres":
 			displayResList(urlParts, req, res);
 			break;
 		default:
@@ -38,15 +38,13 @@ function displayRoot(urlParts, req, res) {
 
 
 function displayReservations(urlParts, req, res) {
-	// we need to match the names of the html pages
-	fs.readFile(__dirname + "/reservations.html", "utf8", function (err, data) {
+	fs.readFile(__dirname + "/makeres.html", "utf8", function (err, data) {
 
 	});
 }
 
 function displayResList(urlParts, req, res) {
-	// we need to match the names of the html pages
-	fs.readFile(__dirname + "/reslist.html", "utf8", function (err, data) {
+	fs.readFile(__dirname + "/viewres.html", "utf8", function (err, data) {
 
 	});
 }
