@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	 crossorigin="anonymous">
 	<title>View Reservations</title>
 </head>
+
 <body>
-		<div class="jumbotron">
-				<h1 class="display-4">Make Reservation</h1>
-				<p class="lead">Here is Table / Waitlist Information</p>
-				<hr class="my-4">
-				<p class="lead">
-					<a class="btn btn-primary btn-lg" href="#" role="button" id="homeBtn">Home</a>
-					<a class="btn btn-success btn-lg" href="#" role="button" id="makeRes">Make Reservations</a>
-				</p>
-			</div>
+	<div class="jumbotron">
+		<h1 class="display-4">Make Reservation</h1>
+		<p class="lead">Here is Table / Waitlist Information</p>
+		<hr class="my-4">
+		<p class="lead">
+			<a class="btn btn-primary btn-lg" href="#" role="button" id="homeBtn">Home</a>
+			<a class="btn btn-success btn-lg" href="#" role="button" id="makeRes">Make Reservations</a>
+		</p>
+	</div>
 	<div class="card">
 		<div class="card-body" id="reservedTables">
 			this is the tables
@@ -27,5 +30,46 @@
 			waitlist data
 		</div>
 	</div>
+	<script type="text/javascript">
+		var resBtn = $("#makeResBtn");
+		var rTables = $("#reservedTables");
+		var wlist = $("#waitlist");
+
+
+		var bookRes = $("#bookRes");
+		var homeBTN = $("#homeBtn");
+
+		var resultsArr = [];
+
+		var xBtn = $("<button>").text("X").addClass("removeBtn");
+
+		function updateDivs() {
+			$.get("api/tableData")
+				.then(function (results) {
+					resultsArr = [];
+					// return the information to an array
+					for (let i = 0; i < results.length; i++) {
+						resultsArr.push(results[i])
+					}
+					// loop through the array for first 5 items
+					for (let index = 0; index < resultsArr.length; index++) {
+						var resvtn = resultsArr[i];
+						// update our button to have an attribute to log for removing later
+						var newX = xBtn.attr("data-number", resvtn.id)
+						// make a new div with stuff
+						var newDiv = $("<div>").html(newX,
+							("Reservation #: " + resvtn.id + "<br> Held by: " + resvtn.name + "<br> Contact Phone:  " + resvtn.phone));
+						// append to the rTables div
+						if (i < 5) {
+							rTables.append(newDiv);
+						}
+						else {
+							wlist.append(newDiv)
+						}
+					}
+				}
+				)
+		}</script>
 </body>
+
 </html>
