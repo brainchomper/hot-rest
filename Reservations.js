@@ -61,14 +61,14 @@ function displayReservations(urlParts, req, res) {
 }
 
 function displayResList(urlParts, req, res) {
-	app.get("/viewres", function(req, res) {
+	app.get("api/viewres", function(req, res) {
 		return res.json(reservations);
 
 	});
 }
 
 // Create New Reservations - takes in JSON input
-app.post("/makeres", function (req, res) {
+app.post("/api/makeres", function (req, res) {
 	// req is an object. req.body is the "body" parameter of the req object.
 	var newreservation = req.body;
 
