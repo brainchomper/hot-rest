@@ -36,6 +36,22 @@
 			</form>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+	var emailID = $("#resEmail").val();
+var resName = $("#resName").val();
+var phone = $("#phone").val(); 
+
+bookRes.on("click", function(){
+	var newRes = {
+		Email : emailID,
+		UserName: resName,
+		Phone: phone
+	};
+	$.post("/api/tableDataAdd", newRes).then(function(data){
+		console.log("Booking your Reservation");
+	})
+})</script>
 </body>
 </html>
 
