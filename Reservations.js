@@ -3,7 +3,7 @@ var fs = require("fs");
 var mysql = require("mysql");
 var bodyParser = require("body-parser");
 var url = require("url");
-var express = require("express");
+var app = require("express");
 
 var PORT = 3030;
 
@@ -31,20 +31,23 @@ function handleRequestOne(req, res) {
 }
 
 function displayRoot(urlParts, req, res) {
-	fs.readFile(__dirname + "/index.html", "utf8", function (err, data) {
+	app.get("/", function(req, res) {
+		return res.json(reservations);
 
 	});
 }
 
 
 function displayReservations(urlParts, req, res) {
-	fs.readFile(__dirname + "/makeres.html", "utf8", function (err, data) {
+	app.get("/makeres", function(req, res) {
+		return res.json(reservations);
 
 	});
 }
 
 function displayResList(urlParts, req, res) {
-	fs.readFile(__dirname + "/viewres.html", "utf8", function (err, data) {
+	app.get("viewres", function(req, res) {
+		return res.json(reservations);
 
 	});
 }
