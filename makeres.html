@@ -48,7 +48,7 @@ bookRes.on("click", function(){
 		UserName: resName,
 		Phone: phone
 	};
-	$.post("/api/tableDataAdd", newRes).then(function(data){
+	$.post("/api/makeres", newRes).then(function(data){
 		console.log("Booking your Reservation");
 	})
 })</script>
