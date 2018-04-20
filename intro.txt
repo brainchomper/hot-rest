@@ -1,0 +1,43 @@
+Instructions:
+
+Phase I: For this first phase, aim to write out the pieces that will need to be programmed to create the functionality of your application. Try to break it into 6-7 pieces.
+Instructors/TAs: Once time is up have students share their breakdowns. As a suggestion, here is a list that you can slack them.
+
+Create the front-end (visuals) for home page, reservation form, and reservation views.
+
+Create a basic server using Express.JS
+
+Create a few array variables that will hold the data
+
+Create a set of routes for getting and posting table data
+
+Create a set of routes for displaying the HTML pages
+
+Use jQuery to run AJAX calls to GET and POST data from users to the Express server
+
+
+
+
+
+WE will create seperate HTML files for the home page, a page to make a reservation, and a page to view reservation.
+
+we need to create a database that holds atleast 2 tables one for reservations and one for the waiting list.
+
+The reservation table can only hold 5 rows
+
+inside of the rows will hold the name, phone number, email, and the unique ID for tha person.
+
+any reservation will be pushed into the waiting list instead. and held there until a spot becomes availabe inside the reservation list.
+
+create variables for reservations and for wating list.
+
+make the reservations table only go up to 5
+
+if statement that pushes reservations into the waiting list array when the reservations array reaches 5
+
+create functions that will update the html template with infromation from the server when the forms are complete and the appropriate button is pressed
+
+create buttons that will navigate the html pages
+
+using jQuery we will contact the server and use the infromation inside of it to display it on the appropriate HTML pages.
+
