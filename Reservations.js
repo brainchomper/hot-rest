@@ -3,11 +3,14 @@ var fs = require("fs");
 var mysql = require("mysql");
 var bodyParser = require("body-parser");
 var url = require("url");
-var app = require("express");
+var express = require("express");
+var path = require("path");
+
+var app = express();
 
 var PORT = 3030;
 
-var reservation = [];
+var reservations = [];
 var waitingList = [];
 
 function handleRequestOne(req, res) {
@@ -46,11 +49,23 @@ function displayReservations(urlParts, req, res) {
 }
 
 function displayResList(urlParts, req, res) {
-	app.get("viewres", function(req, res) {
+	app.get("/viewres", function(req, res) {
 		return res.json(reservations);
 
 	});
 }
+
+// Create New Reservations - takes in JSON input
+app.post("/makeres", function (req, res) {
+	// req is an object. req.body is the "body" parameter of the req object.
+	var newreservation = req.body;
+
+	console.log(newreservation);
+
+	reservations.push(newreservation);
+
+	res.json(newreservation);
+});
 
 var serverOne = http.createServer(handleRequestOne);
 
