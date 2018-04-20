@@ -13,6 +13,18 @@ var PORT = 3030;
 var reservations = [];
 var waitingList = [];
 
+fillArr();
+
+function fillArr() {
+	connection.query("SELECT * FROM Reservations", function(err, data){
+		for (let index = 0; index < data.length; index++) {
+			var element = data[index];
+			reservations.push(element);
+			
+		}
+	})
+}
+
 function handleRequestOne(req, res) {
 	// puts together a url object we are using
 	var urlParts = url.parse(req.url);
@@ -62,7 +74,12 @@ app.post("/makeres", function (req, res) {
 
 	console.log(newreservation);
 
-	reservations.push(newreservation);
+	connection.query("INSERT INTO Reservations SET ?",
+newreservation, function (err, res){
+	if (err) {
+		throw err;
+	}
+})
 
 	res.json(newreservation);
 });
